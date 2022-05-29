@@ -8,5 +8,5 @@ class MainView(View):
     def get(self, request, *args, **kwargs):
         return render(
             request,
-            'myblog/index.html'
+            'myblog/home.html'
         )
