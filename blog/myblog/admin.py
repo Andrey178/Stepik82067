@@ -10,5 +10,4 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'url': ('title',)}
 
 
-
 admin.site.register(Post, PostAdmin)

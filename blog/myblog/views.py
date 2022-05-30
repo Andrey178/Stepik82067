@@ -7,9 +7,5 @@ from .models import Post
 
 class MainView(View):
     def get(self, request, *args, **kwargs):
-        posts = Post.obects.all()
-        return render(
-            request,
-            'myblog/home.html',
-            context={'post': posts}
-        )
+        posts = Post.objects.all()
+        return render(request, 'myblog/home.html', context={'posts': posts})

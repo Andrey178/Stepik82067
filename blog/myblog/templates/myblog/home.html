@@ -10,6 +10,39 @@
 {% block content %}
     <div class="container">
         <h1 class="my-3">Последние записи блога</h1>
+<!--
+        {% for post in posts %}
+        <h2>{{ post.h1 }}</h2>
+        <p>{{ post.url }}</p>
+        {{ post.description|safe }}
+        <p>{{ post.image }}</p>
+        <p>{{ post.created_at }}</p>
+        <p>{{ post.author }}</p>
+        {% endfor %}
+-->
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="media/{{ post.image }}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ post.h1 }}</h4>
+                        {{ post.description|safe|truncatechars:100 }}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                            </div>
+                            <small class="text-muted">{{ post.created_at }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+        <!--
         <div class="row">
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
@@ -103,8 +136,9 @@
                 </div>
             </div>
         </div>
+        -->
+
     </div>
-{% endblock %}
 
 {% block pagination %}
     <nav aria-label="Paginate me">
