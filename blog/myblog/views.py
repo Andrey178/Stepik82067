@@ -5,8 +5,8 @@ from django.core.paginator import Paginator
 
 from .models import Post
 
-from .forms import SigUpForm
-from django.contrib.auth import login
+from .forms import SigUpForm, SignInForm
+from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
 # Create your views here.
 
@@ -45,5 +45,26 @@ class SignUpView(View):
                 login(request, user)
                 return HttpResponseRedirect('/')
         return render(request, 'myblog/signup.html', context={
+            'form': form,
+        })
+
+
+class SignInView(View):
+    def get(self, request, *args, **kwargs):
+        form = SignInForm()
+        return render(request, 'myblog/signin.html', context={
+            'form': form,
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+        return render(request, 'myblog/signin.html', context={
             'form': form,
         })
