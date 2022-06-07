@@ -161,3 +161,12 @@ CKEDITOR_CONFIGS = {
 ###################################
 
 LOGOUT_REDIRECT_URL = "/"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mail@gmail.com'
+# EMAIL_HOST_USER = 'Ваша почта на gmail'
+EMAIL_HOST_PASSWORD = 'vfkqu'
+# EMAIL_HOST_PASSWORD = 'Пароль на приложение from mail service security access'
