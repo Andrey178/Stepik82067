@@ -10,6 +10,8 @@ from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect, HttpResponse
 
 from django.core.mail import send_mail, BadHeaderError
+
+from django.db.models import Q
 # Create your views here.
 
 
@@ -101,4 +103,19 @@ class SuccessView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'myblog/success.html', context={
             'title': 'Спасибо',
+        })
+
+
+class SearchResultsView(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('q')
+        results = ""
+        if query:
+            results = Post.objects.filter(
+                Q(h1__icontains=query) | Q(content__icontains=query)
+            )
+        return render(request, 'myblog/search.html', context={
+            'title': 'Поиск',
+            'results': results,
+            'count': len(results)
         })
