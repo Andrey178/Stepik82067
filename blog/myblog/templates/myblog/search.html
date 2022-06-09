@@ -16,18 +16,12 @@
                     <li class="breadcrumb-item active" aria-current="page">Поиск</li>
                 </ol>
             </nav>
-            <p class="lead">Найдено записей: 3</p>
-            {{ results }} <br>
-            {{ count }}
-            <a href=""><h2>Заголовок поста 1</h2></a>
-            <p>Это красткое описание поста. Это красткое описание поста. Это красткое описание поста.</p>
-            <hr>
-            <a href=""><h2>Заголовок поста 2</h2></a>
-            <p>Это красткое описание поста. Это красткое описание поста. Это красткое описание поста.</p>
-            <hr>
-            <a href=""><h2>Заголовок поста 3</h2></a>
-            <p>Это красткое описание поста. Это красткое описание поста. Это красткое описание поста.</p>
-            <hr>
+            <p class="lead">Найдено записей: {{ count }}</p>
+            {% for result in results %}
+                <a href="{% url 'post_detail' slug=result.url %}"><h2>{{ result.h1 }}</h2></a>
+                <p>{{ result.description|safe }}</p>
+                <hr>
+            {% endfor %}
         </div>
     </div>
 </div>
