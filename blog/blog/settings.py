@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myblog',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -170,3 +171,6 @@ EMAIL_HOST_USER = 'mail@gmail.com'
 # EMAIL_HOST_USER = 'Ваша почта на gmail'
 EMAIL_HOST_PASSWORD = 'vfkqu'
 # EMAIL_HOST_PASSWORD = 'Пароль на приложение from mail service security access'
+
+# Taggit settings
+TAGGIT_CASE_INSENSITIVE = True
